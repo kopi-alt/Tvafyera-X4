@@ -39,7 +39,7 @@ body{
   font-family:'Quicksand', system-ui, -apple-system, sans-serif;
   color:var(--ink);
   background-color:var(--cream);
-  /* BACKGROUND IMAGE SETTINGS - MENGGUNAKAN NAMA FILE KAMU */
+  /* BACKGROUND IMAGE SETTINGS */
   background-image: url('background.jpg'); 
   background-size: cover;
   background-position: center;
@@ -290,6 +290,10 @@ section{ padding:96px 24px; scroll-margin-top:80px; }
   box-shadow:var(--shadow);
   transition:transform .3s ease, border-color .3s ease, box-shadow .3s ease;
   backdrop-filter: blur(5px);
+  /* Tambahan untuk layout foto & teks */
+  display: flex;
+  align-items: center;
+  gap: 20px;
 }
 .org-card + .org-card{ margin-top:18px; }
 .org-card:hover{
@@ -316,6 +320,33 @@ section{ padding:96px 24px; scroll-margin-top:80px; }
   background:var(--sage-dark);
   border-color:var(--sage-dark);
   color:#fff;
+}
+
+/* ---------- FOTO PLACEHOLDER STRUKTUR ---------- */
+.org-photo {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%; /* Membuat foto menjadi bulat */
+  background-color: var(--sage-soft);
+  border: 3px solid var(--paper);
+  box-shadow: 0 4px 12px rgba(95, 127, 92, 0.2);
+  overflow: hidden;
+  flex-shrink: 0; /* Mencegah foto mengecil */
+  display: grid;
+  place-items: center;
+  color: var(--sage-dark);
+}
+
+/* Jika menggunakan tag <img> */
+.org-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Pembungkus Teks */
+.org-info {
+  flex: 1;
 }
 
 .org-role{
@@ -375,6 +406,18 @@ footer{
   .org-card{ padding:20px 20px; border-radius:18px; }
   .org-name{ font-size:1.1rem; }
 
+  /* Penyesuaian untuk HP: Foto di atas, teks di bawah */
+  .org-card {
+    flex-direction: column;
+    text-align: center;
+    gap: 12px;
+  }
+  .org-photo {
+    width: 70px;
+    height: 70px;
+    margin-top: 5px;
+  }
+
   /* Make decorative image smaller on mobile */
   .corner-decoration {
     width: 160px; 
@@ -391,7 +434,8 @@ footer{
 <body>
 
 <!-- ================= DECORATIVE CORNER IMAGE ================= -->
-<!-- Menggunakan nama file 'dekorasi sudut.png' -->
+<!-- Jika ingin menambahkan gambar dekorasi di pojok kanan bawah, buka komentar di bawah ini -->
+<!-- <img src="dekorasi-sudut.png" alt="Dekorasi Sudut" class="corner-decoration"> -->
 
 <!-- ================= NAVBAR ================= -->
 <header class="nav">
@@ -485,9 +529,14 @@ footer{
             <path d="M12 6.5v13"/>
           </svg>
         </span>
-        <span class="org-role">Teacher</span>
-        <h3 class="org-name">Mrs. Ratna Kasih</h3>
-        <p class="org-note">Guides, teaches, and supports the whole class.</p>
+        <div class="org-photo">
+          <img src="https://placehold.co/100x100/C6DAC1/5F7F5C?text=Foto" alt="Foto Mrs. Ratna Kasih">
+        </div>
+        <div class="org-info">
+          <span class="org-role">Teacher</span>
+          <h3 class="org-name">Mrs. Ratna Kasih</h3>
+          <p class="org-note">Guides, teaches, and supports the whole class.</p>
+        </div>
       </article>
 
       <!-- 2. CLASS LEADER -->
@@ -498,9 +547,14 @@ footer{
             <path d="M12 3.6l2.5 5.1 5.6.8-4 3.9.9 5.6-5-2.6-5 2.6.9-5.6-4-3.9 5.6-.8L12 3.6Z"/>
           </svg>
         </span>
-        <span class="org-role">Class Leader</span>
-        <h3 class="org-name">Nafasha Irhabnabil</h3>
-        <p class="org-note">Known as Nabil. Leads the class and represents our voice.</p>
+        <div class="org-photo">
+          <img src="https://placehold.co/100x100/C6DAC1/5F7F5C?text=Foto" alt="Foto Nafasha Irhabnabil">
+        </div>
+        <div class="org-info">
+          <span class="org-role">Class Leader</span>
+          <h3 class="org-name">Nafasha Irhabnabil</h3>
+          <p class="org-note">Known as Nabil. Leads the class and represents our voice.</p>
+        </div>
       </article>
 
       <!-- 3. VICE LEADER -->
@@ -512,9 +566,14 @@ footer{
             <path d="M6 5h11l-2.2 4L17 13H6"/>
           </svg>
         </span>
-        <span class="org-role">Vice Leader</span>
-        <h3 class="org-name">M. Danial Khairul Ahzam</h3>
-        <p class="org-note">Supports the leader and keeps things moving.</p>
+        <div class="org-photo">
+          <img src="https://placehold.co/100x100/C6DAC1/5F7F5C?text=Foto" alt="Foto M. Danial Khairul Ahzam">
+        </div>
+        <div class="org-info">
+          <span class="org-role">Vice Leader</span>
+          <h3 class="org-name">M. Danial Khairul Ahzam</h3>
+          <p class="org-note">Supports the leader and keeps things moving.</p>
+        </div>
       </article>
 
       <!-- 4. SECRETARY 1 -->
@@ -526,9 +585,14 @@ footer{
             <path d="M14.5 6.5l3 3"/>
           </svg>
         </span>
-        <span class="org-role">Secretary 1</span>
-        <h3 class="org-name">Muhammad Rafasya Alfarizqi</h3>
-        <p class="org-note">Records notes, announcements, and class records.</p>
+        <div class="org-photo">
+          <img src="https://placehold.co/100x100/C6DAC1/5F7F5C?text=Foto" alt="Foto Muhammad Rafasya Alfarizqi">
+        </div>
+        <div class="org-info">
+          <span class="org-role">Secretary 1</span>
+          <h3 class="org-name">Muhammad Rafasya Alfarizqi</h3>
+          <p class="org-note">Records notes, announcements, and class records.</p>
+        </div>
       </article>
 
       <!-- 5. SECRETARY 2 -->
@@ -540,9 +604,14 @@ footer{
             <path d="M14.5 6.5l3 3"/>
           </svg>
         </span>
-        <span class="org-role">Secretary 2</span>
-        <h3 class="org-name">Qonita Sholihah</h3>
-        <p class="org-note">Assists in recording notes and class administration.</p>
+        <div class="org-photo">
+          <img src="https://placehold.co/100x100/C6DAC1/5F7F5C?text=Foto" alt="Foto Qonita Sholihah">
+        </div>
+        <div class="org-info">
+          <span class="org-role">Secretary 2</span>
+          <h3 class="org-name">Qonita Sholihah</h3>
+          <p class="org-note">Assists in recording notes and class administration.</p>
+        </div>
       </article>
 
       <!-- 6. TREASURER 1 -->
@@ -555,9 +624,14 @@ footer{
             <path d="M14.6 9.6c-.5-.7-1.4-1.1-2.6-1.1-1.5 0-2.5.7-2.5 1.8 0 2.6 5.2 1.3 5.2 3.9 0 1.1-1.1 1.9-2.7 1.9-1.3 0-2.3-.5-2.8-1.3"/>
           </svg>
         </span>
-        <span class="org-role">Treasurer 1</span>
-        <h3 class="org-name">Annisa Qotrunnada</h3>
-        <p class="org-note">Manages class funds with care and honesty.</p>
+        <div class="org-photo">
+          <img src="https://placehold.co/100x100/C6DAC1/5F7F5C?text=Foto" alt="Foto Annisa Qotrunnada">
+        </div>
+        <div class="org-info">
+          <span class="org-role">Treasurer 1</span>
+          <h3 class="org-name">Annisa Qotrunnada</h3>
+          <p class="org-note">Manages class funds with care and honesty.</p>
+        </div>
       </article>
 
       <!-- 7. TREASURER 2 -->
@@ -570,9 +644,14 @@ footer{
             <path d="M14.6 9.6c-.5-.7-1.4-1.1-2.6-1.1-1.5 0-2.5.7-2.5 1.8 0 2.6 5.2 1.3 5.2 3.9 0 1.1-1.1 1.9-2.7 1.9-1.3 0-2.3-.5-2.8-1.3"/>
           </svg>
         </span>
-        <span class="org-role">Treasurer 2</span>
-        <h3 class="org-name">Laila Anggraini Hasyim</h3>
-        <p class="org-note">Assists in managing class finances and records.</p>
+        <div class="org-photo">
+          <img src="https://placehold.co/100x100/C6DAC1/5F7F5C?text=Foto" alt="Foto Laila Anggraini Hasyim">
+        </div>
+        <div class="org-info">
+          <span class="org-role">Treasurer 2</span>
+          <h3 class="org-name">Laila Anggraini Hasyim</h3>
+          <p class="org-note">Assists in managing class finances and records.</p>
+        </div>
       </article>
 
     </div>
