@@ -474,6 +474,48 @@ section{ padding:96px 24px; scroll-margin-top:80px; }
   line-height: 1.3;
 }
 
+/* ============================================================
+   MEMORIES OF CLASS SECTION
+   ============================================================ */
+.memories-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 24px;
+  padding: 20px 0;
+}
+
+.memory-slot {
+  aspect-ratio: 16 / 9; /* Landscape frame */
+  background-color: var(--sage-soft);
+  border-radius: 20px;
+  overflow: hidden;
+  border: 3px dashed var(--sage);
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: var(--sage-dark);
+  font-weight: 700;
+  font-size: 1.1rem;
+  transition: transform .3s ease, border-color .3s ease;
+  position: relative;
+}
+
+.memory-slot:hover {
+  transform: scale(1.02);
+  border-color: var(--sage-dark);
+}
+
+/* Jika nanti diisi gambar, gambar akan memenuhi slot */
+.memory-slot img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  inset: 0;
+}
+
 
 /* ---------- FOOTER ---------- */
 footer{
@@ -566,6 +608,12 @@ footer{
   .corner-decoration {
     width: 160px; 
   }
+
+  /* Memories grid menjadi 1 kolom di HP */
+  .memories-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
 }
 
 @media (prefers-reduced-motion: reduce){
@@ -590,6 +638,7 @@ footer{
         <li><a href="#structure">Organization</a></li>
         <li><a href="#divisions">Divisions</a></li>
         <li><a href="#members">Members</a></li>
+        <li><a href="#memories">Memories</a></li>
       </ul>
     </nav>
   </div>
@@ -663,7 +712,7 @@ footer{
         <li>
           <article class="org-card reveal">
             <div class="org-photo">
-              <img src="https://placehold.co/100x100/C6DAC1/5F7F5C?text=Foto" alt="Foto Mrs. Ratna Kasih">
+              <img src="background.jpg" alt="Foto Mrs. Ratna Kasih">
             </div>
             <div class="org-info">
               <span class="org-role">Teacher</span>
@@ -677,7 +726,7 @@ footer{
             <li>
               <article class="org-card reveal">
                 <div class="org-photo">
-                  <img src="https://placehold.co/100x100/C6DAC1/5F7F5C?text=Foto" alt="Foto Nafasha Irhabnabil">
+                  <img src="background.jpg" alt="Foto Nafasha Irhabnabil">
                 </div>
                 <div class="org-info">
                   <span class="org-role">Class Leader</span>
@@ -691,7 +740,7 @@ footer{
                 <li>
                   <article class="org-card reveal">
                     <div class="org-photo">
-                      <img src="https://placehold.co/100x100/C6DAC1/5F7F5C?text=Foto" alt="Foto Muhammad Danial Khoirul Ahzam">
+                      <img src="background.jpg" alt="Foto Muhammad Danial Khoirul Ahzam">
                     </div>
                     <div class="org-info">
                       <span class="org-role">Vice Leader</span>
@@ -705,7 +754,7 @@ footer{
                     <li>
                       <article class="org-card reveal">
                         <div class="org-photo">
-                          <img src="https://placehold.co/100x100/C6DAC1/5F7F5C?text=Foto" alt="Foto Muhammad Rafasya Alfarizqi">
+                          <img src="background.jpg" alt="Foto Muhammad Rafasya Alfarizqi">
                         </div>
                         <div class="org-info">
                           <span class="org-role">Secretary 1</span>
@@ -717,7 +766,7 @@ footer{
                     <li>
                       <article class="org-card reveal">
                         <div class="org-photo">
-                          <img src="https://placehold.co/100x100/C6DAC1/5F7F5C?text=Foto" alt="Foto Qonita Sholihah">
+                          <img src="background.jpg" alt="Foto Qonita Sholihah">
                         </div>
                         <div class="org-info">
                           <span class="org-role">Secretary 2</span>
@@ -729,7 +778,7 @@ footer{
                     <li>
                       <article class="org-card reveal">
                         <div class="org-photo">
-                          <img src="https://placehold.co/100x100/C6DAC1/5F7F5C?text=Foto" alt="Foto Annisa Qotrunnada">
+                          <img src="background.jpg" alt="Foto Annisa Qotrunnada">
                         </div>
                         <div class="org-info">
                           <span class="org-role">Treasurer 1</span>
@@ -741,7 +790,7 @@ footer{
                     <li>
                       <article class="org-card reveal">
                         <div class="org-photo">
-                          <img src="https://placehold.co/100x100/C6DAC1/5F7F5C?text=Foto" alt="Foto Laila Anggraini Hasim">
+                          <img src="background.jpg" alt="Foto Laila Anggraini Hasim">
                         </div>
                         <div class="org-info">
                           <span class="org-role">Treasurer 2</span>
@@ -776,13 +825,13 @@ footer{
       <div class="member-grid">
         <div class="person-card">
           <div class="person-photo">
-            <img src="https://placehold.co/100x100/C6DAC1/5F7F5C?text=Foto" alt="Foto Zilmi Gaiza Ribki">
+            <img src="background.jpg" alt="Foto Zilmi Gaiza Ribki">
           </div>
           <span class="person-name">Zilmi Gaiza Ribki</span>
         </div>
         <div class="person-card">
           <div class="person-photo">
-            <img src="https://placehold.co/100x100/C6DAC1/5F7F5C?text=Foto" alt="Foto Ahmad Ali Hanafi">
+            <img src="background.jpg" alt="Foto Ahmad Ali Hanafi">
           </div>
           <span class="person-name">Ahmad Ali Hanafi</span>
         </div>
@@ -795,13 +844,13 @@ footer{
       <div class="member-grid">
         <div class="person-card">
           <div class="person-photo">
-            <img src="https://placehold.co/100x100/C6DAC1/5F7F5C?text=Foto" alt="Foto Harza Pratama Putra">
+            <img src="background.jpg" alt="Foto Harza Pratama Putra">
           </div>
           <span class="person-name">Harza Pratama Putra</span>
         </div>
         <div class="person-card">
           <div class="person-photo">
-            <img src="https://placehold.co/100x100/C6DAC1/5F7F5C?text=Foto" alt="Foto Aulia Arianti Ramdani">
+            <img src="background.jpg" alt="Foto Aulia Arianti Ramdani">
           </div>
           <span class="person-name">Aulia Arianti Ramdani</span>
         </div>
@@ -814,13 +863,13 @@ footer{
       <div class="member-grid">
         <div class="person-card">
           <div class="person-photo">
-            <img src="https://placehold.co/100x100/C6DAC1/5F7F5C?text=Foto" alt="Foto Nasywa Althofunnisa">
+            <img src="background.jpg" alt="Foto Nasywa Althofunnisa">
           </div>
           <span class="person-name">Nasywa Althofunnisa</span>
         </div>
         <div class="person-card">
           <div class="person-photo">
-            <img src="https://placehold.co/100x100/C6DAC1/5F7F5C?text=Foto" alt="Foto Baiq Neysa Sholawati">
+            <img src="background.jpg" alt="Foto Baiq Neysa Sholawati">
           </div>
           <span class="person-name">Baiq Neysa Sholawati</span>
         </div>
@@ -833,19 +882,19 @@ footer{
       <div class="member-grid">
         <div class="person-card">
           <div class="person-photo">
-            <img src="https://placehold.co/100x100/C6DAC1/5F7F5C?text=Foto" alt="Foto Ayinul Muhimmatul Mufthiyar">
+            <img src="background.jpg" alt="Foto Ayinul Muhimmatul Mufthiyar">
           </div>
           <span class="person-name">Ayinul Muhimmatul Mufthiyar</span>
         </div>
         <div class="person-card">
           <div class="person-photo">
-            <img src="https://placehold.co/100x100/C6DAC1/5F7F5C?text=Foto" alt="Foto Fajra Naila Arkarnandika">
+            <img src="background.jpg" alt="Foto Fajra Naila Arkarnandika">
           </div>
           <span class="person-name">Fajra Naila Arkarnandika</span>
         </div>
         <div class="person-card">
           <div class="person-photo">
-            <img src="https://placehold.co/100x100/C6DAC1/5F7F5C?text=Foto" alt="Foto Fakhira Salsabila">
+            <img src="background.jpg" alt="Foto Fakhira Salsabila">
           </div>
           <span class="person-name">Fakhira Salsabila</span>
         </div>
@@ -864,60 +913,114 @@ footer{
     </div>
 
     <div class="member-grid reveal">
-      <!-- Ahmad Ali Hanafi SUDAH DIHAPUS DARI SINI -->
       <div class="person-card">
         <div class="person-photo">
-          <img src="https://placehold.co/100x100/C6DAC1/5F7F5C?text=Foto" alt="Foto Ahmad Bangkit Ardika">
+          <img src="background.jpg" alt="Foto Ahmad Bangkit Ardika">
         </div>
         <span class="person-name">Ahmad Bangkit Ardika</span>
       </div>
       <div class="person-card">
         <div class="person-photo">
-          <img src="https://placehold.co/100x100/C6DAC1/5F7F5C?text=Foto" alt="Foto Aulia Zaskia Putri">
+          <img src="background.jpg" alt="Foto Aulia Zaskia Putri">
         </div>
         <span class="person-name">Aulia Zaskia Putri</span>
       </div>
       <div class="person-card">
         <div class="person-photo">
-          <img src="https://placehold.co/100x100/C6DAC1/5F7F5C?text=Foto" alt="Foto Baiq Alfiatussolihah">
+          <img src="background.jpg" alt="Foto Baiq Alfiatussolihah">
         </div>
         <span class="person-name">Baiq Alfiatussolihah</span>
       </div>
       <div class="person-card">
         <div class="person-photo">
-          <img src="https://placehold.co/100x100/C6DAC1/5F7F5C?text=Foto" alt="Foto M. Zian Hafikara">
+          <img src="background.jpg" alt="Foto M. Zian Hafikara">
         </div>
         <span class="person-name">M. Zian Hafikara</span>
       </div>
       <div class="person-card">
         <div class="person-photo">
-          <img src="https://placehold.co/100x100/C6DAC1/5F7F5C?text=Foto" alt="Foto Muhammad Rayan Fauzi">
+          <img src="background.jpg" alt="Foto Muhammad Rayan Fauzi">
         </div>
         <span class="person-name">Muhammad Rayan Fauzi</span>
       </div>
       <div class="person-card">
         <div class="person-photo">
-          <img src="https://placehold.co/100x100/C6DAC1/5F7F5C?text=Foto" alt="Foto Muhammad Syafiq Rizqullah">
+          <img src="background.jpg" alt="Foto Muhammad Syafiq Rizqullah">
         </div>
         <span class="person-name">Muhammad Syafiq Rizqullah</span>
       </div>
       <div class="person-card">
         <div class="person-photo">
-          <img src="https://placehold.co/100x100/C6DAC1/5F7F5C?text=Foto" alt="Foto Nur Isma'iyatul">
+          <img src="background.jpg" alt="Foto Nur Isma'iyatul">
         </div>
         <span class="person-name">Nur Isma'iyatul</span>
       </div>
       <div class="person-card">
         <div class="person-photo">
-          <img src="https://placehold.co/100x100/C6DAC1/5F7F5C?text=Foto" alt="Foto Rosyidatul Aisyah">
+          <img src="background.jpg" alt="Foto Rosyidatul Aisyah">
         </div>
         <span class="person-name">Rosyidatul Aisyah</span>
       </div>
       <div class="person-card">
         <div class="person-photo">
-          <img src="https://placehold.co/100x100/C6DAC1/5F7F5C?text=Foto" alt="Foto Salisa Wafika Royyani">
+          <img src="background.jpg" alt="Foto Salisa Wafika Royyani">
         </div>
         <span class="person-name">Salisa Wafika Royyani</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= MEMORIES OF CLASS ================= -->
+<section id="memories">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Gallery</span>
+      <h2>Memories of Class</h2>
+      <p>A collection of moments, laughter, and stories we've shared together.</p>
+    </div>
+
+    <div class="memories-grid reveal">
+      <!-- Slot 1 -->
+      <div class="memory-slot">
+        <!-- Nanti ganti dengan <img src="foto1.jpg" alt="Memory 1"> -->
+        <span>Slot Foto 1</span>
+      </div>
+      <!-- Slot 2 -->
+      <div class="memory-slot">
+        <span>Slot Foto 2</span>
+      </div>
+      <!-- Slot 3 -->
+      <div class="memory-slot">
+        <span>Slot Foto 3</span>
+      </div>
+      <!-- Slot 4 -->
+      <div class="memory-slot">
+        <span>Slot Foto 4</span>
+      </div>
+      <!-- Slot 5 -->
+      <div class="memory-slot">
+        <span>Slot Foto 5</span>
+      </div>
+      <!-- Slot 6 -->
+      <div class="memory-slot">
+        <span>Slot Foto 6</span>
+      </div>
+      <!-- Slot 7 -->
+      <div class="memory-slot">
+        <span>Slot Foto 7</span>
+      </div>
+      <!-- Slot 8 -->
+      <div class="memory-slot">
+        <span>Slot Foto 8</span>
+      </div>
+      <!-- Slot 9 -->
+      <div class="memory-slot">
+        <span>Slot Foto 9</span>
+      </div>
+      <!-- Slot 10 -->
+      <div class="memory-slot">
+        <span>Slot Foto 10</span>
       </div>
     </div>
   </div>
