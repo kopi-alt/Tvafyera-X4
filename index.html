@@ -39,7 +39,6 @@ body{
   font-family:'Quicksand', system-ui, -apple-system, sans-serif;
   color:var(--ink);
   background-color:var(--cream);
-  /* BACKGROUND IMAGE SETTINGS */
   background-image: url('background.jpg'); 
   background-size: cover;
   background-position: center;
@@ -51,12 +50,11 @@ body{
   position: relative;
 }
 
-/* Overlay to ensure text is readable over the background image */
 body::before {
   content: "";
   position: fixed;
   inset: 0;
-  background: rgba(251, 246, 236, 0.88); /* Soft cream overlay */
+  background: rgba(251, 246, 236, 0.88);
   z-index: -1;
 }
 
@@ -68,10 +66,10 @@ a{ color:inherit; }
   position: fixed;
   bottom: 0;
   right: 0;
-  width: 280px; /* Adjust size for laptop */
+  width: 280px;
   height: auto;
   z-index: 50;
-  pointer-events: none; /* Prevents image from blocking clicks */
+  pointer-events: none;
   filter: drop-shadow(-5px -5px 15px rgba(0,0,0,0.15));
   transition: width 0.3s ease;
 }
@@ -116,7 +114,6 @@ a{ color:inherit; }
   overflow:hidden;
 }
 
-/* floating clouds */
 .clouds{ position:absolute; inset:0; pointer-events:none; z-index:0; }
 .cloud{
   position:absolute; left:0;
@@ -140,7 +137,6 @@ a{ color:inherit; }
   to  { transform:translateX(125vw); }
 }
 
-/* soft sun */
 .sun{
   position:absolute; top:12%; right:12%;
   width:130px; height:130px; border-radius:50%;
@@ -262,108 +258,157 @@ section{ padding:96px 24px; scroll-margin-top:80px; }
 }
 .about-card .sub{ font-size:.88rem; color:var(--ink-soft); margin-top:6px; }
 
-/* ---------- ORGANIZATION COLUMN ---------- */
-.org{
-  position:relative;
-  max-width:720px;
-  margin:0 auto;
-  padding-left:56px;
-}
-/* the connecting line */
-.org::before{
-  content:"";
-  position:absolute; left:23px; top:16px; bottom:16px;
-  width:2px;
-  background:linear-gradient(180deg,
-    rgba(228,220,203,0) 0%,
-    var(--line) 10%,
-    var(--line) 90%,
-    rgba(228,220,203,0) 100%);
+/* ============================================================
+   CSS TREE STRUCTURE (BAGAN POHON)
+   ============================================================ */
+.tree-wrap {
+  overflow-x: auto; /* Memungkinkan scroll horizontal jika layar terlalu sempit */
+  padding-bottom: 40px;
+  text-align: center;
 }
 
-.org-card{
-  position:relative;
-  background:rgba(255, 253, 247, 0.95);
-  border:1px solid var(--line);
-  border-radius:22px;
-  padding:22px 26px;
-  box-shadow:var(--shadow);
-  transition:transform .3s ease, border-color .3s ease, box-shadow .3s ease;
-  backdrop-filter: blur(5px);
-  /* Tambahan untuk layout foto & teks */
+.tree, .tree ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
   display: flex;
+  justify-content: center;
+  position: relative;
+}
+
+.tree ul {
+  padding-top: 24px;
+}
+
+.tree li {
+  position: relative;
+  padding: 24px 10px 0 10px;
+  display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 20px;
-}
-.org-card + .org-card{ margin-top:18px; }
-.org-card:hover{
-  transform:translateX(5px);
-  border-color:var(--sage-soft);
-  box-shadow:0 22px 44px -30px rgba(63,58,51,.7);
 }
 
-/* icon sits on the line */
-.org-icon{
-  position:absolute;
-  left:-56px; top:50%;
-  transform:translateY(-50%);
-  width:48px; height:48px;
-  display:grid; place-items:center;
-  border-radius:50%;
-  background:var(--paper);
-  border:1px solid var(--line);
-  color:var(--sage-dark);
-  transition:background .3s ease, color .3s ease, border-color .3s ease;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+/* Garis Penghubung */
+.tree li::before, .tree li::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 50%;
+  border-top: 2px solid var(--sage-soft);
+  width: 50%;
+  height: 24px;
 }
-.org-card:hover .org-icon{
-  background:var(--sage-dark);
-  border-color:var(--sage-dark);
-  color:#fff;
+.tree li::after {
+  right: auto;
+  left: 50%;
+  border-left: 2px solid var(--sage-soft);
 }
 
-/* ---------- FOTO PLACEHOLDER STRUKTUR ---------- */
-.org-photo {
-  width: 80px;
-  height: 80px;
-  border-radius: 50%; /* Membuat foto menjadi bulat */
+/* Menghilangkan garis untuk anak tunggal */
+.tree li:only-child::after, .tree li:only-child::before {
+  display: none;
+}
+.tree li:only-child {
+  padding-top: 0;
+}
+
+/* Menghilangkan garis berlebih di ujung kiri/kanan */
+.tree li:first-child::before, .tree li:last-child::after {
+  border: 0 none;
+}
+.tree li:last-child::before {
+  border-right: 2px solid var(--sage-soft);
+  border-radius: 0 5px 0 0;
+}
+.tree li:first-child::after {
+  border-radius: 5px 0 0 0;
+}
+
+/* Garis vertikal dari induk ke anak-anaknya */
+.tree ul ul::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  border-left: 2px solid var(--sage-soft);
+  width: 0;
+  height: 24px;
+  transform: translateX(-50%);
+}
+
+/* ---------- KARTU DI DALAM TREE ---------- */
+.tree .org-card {
+  position: relative;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  padding: 18px 14px;
+  box-shadow: var(--shadow);
+  transition: transform .3s ease, border-color .3s ease, box-shadow .3s ease;
+  backdrop-filter: blur(5px);
+  
+  /* Layout vertikal untuk kartu di dalam tree agar muat berdampingan */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  width: 210px; /* Lebar tetap agar rapi */
+  margin-top: 10px;
+}
+
+.tree .org-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--sage-dark);
+  box-shadow: 0 22px 44px -30px rgba(63,58,51,.7);
+  z-index: 10;
+}
+
+.tree .org-photo {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
   background-color: var(--sage-soft);
   border: 3px solid var(--paper);
   box-shadow: 0 4px 12px rgba(95, 127, 92, 0.2);
   overflow: hidden;
-  flex-shrink: 0; /* Mencegah foto mengecil */
+  flex-shrink: 0;
   display: grid;
   place-items: center;
   color: var(--sage-dark);
+  margin-bottom: 12px;
 }
 
-/* Jika menggunakan tag <img> */
-.org-photo img {
+.tree .org-photo img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
-/* Pembungkus Teks */
-.org-info {
-  flex: 1;
+.tree .org-role {
+  display: block;
+  font-size: .65rem;
+  font-weight: 700;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--sage-dark);
+  margin-bottom: 6px;
 }
 
-.org-role{
-  display:block;
-  font-size:.72rem; font-weight:700;
-  letter-spacing:.18em; text-transform:uppercase;
-  color:var(--sage-dark);
-  margin-bottom:4px;
+.tree .org-name {
+  font-family: 'Fraunces', serif;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: #3A4636;
+  line-height: 1.25;
+  margin-bottom: 4px;
 }
-.org-name{
-  font-family:'Fraunces', serif;
-  font-size:1.24rem; font-weight:600;
-  color:#3A4636; line-height:1.3;
+
+.tree .org-note {
+  font-size: .75rem;
+  color: var(--ink-soft);
+  line-height: 1.4;
 }
-.org-note{
-  font-size:.88rem; color:var(--ink-soft); margin-top:4px;
-}
+
 
 /* ---------- FOOTER ---------- */
 footer{
@@ -393,32 +438,51 @@ footer{
 .reveal.in{ opacity:1; transform:none; }
 
 /* ---------- RESPONSIVE ---------- */
-@media (max-width:640px){
+@media (max-width: 900px) {
+  /* Menyesuaikan tree untuk layar tablet/kecil */
+  .tree .org-card {
+    width: 180px;
+    padding: 15px 10px;
+  }
+  .tree .org-name { font-size: 0.95rem; }
+}
+
+@media (max-width: 768px){
   .nav-links{ display:none; }
   section{ padding:72px 20px; }
   .hero{ padding:70px 20px 180px; min-height:auto; }
   .sun{ width:90px; height:90px; top:8%; right:6%; }
 
-  .org{ padding-left:44px; }
-  .org::before{ left:17px; }
-  .org-icon{ left:-44px; width:36px; height:36px; }
-  .org-icon svg{ width:17px; height:17px; }
-  .org-card{ padding:20px 20px; border-radius:18px; }
-  .org-name{ font-size:1.1rem; }
-
-  /* Penyesuaian untuk HP: Foto di atas, teks di bawah */
-  .org-card {
+  /* Mengubah Tree menjadi List Vertikal di HP agar mudah dibaca */
+  .tree ul {
     flex-direction: column;
-    text-align: center;
-    gap: 12px;
+    align-items: center;
+    padding-top: 10px;
   }
-  .org-photo {
-    width: 70px;
-    height: 70px;
-    margin-top: 5px;
+  .tree li {
+    padding: 10px 0;
+  }
+  .tree li::before, .tree li::after, .tree ul ul::before {
+    display: none; /* Sembunyikan garis tree di HP */
+  }
+  .tree li:only-child {
+    padding-top: 10px;
+  }
+  
+  .tree .org-card {
+    width: 100%;
+    max-width: 280px;
+    flex-direction: row; /* Kembali ke horizontal agar hemat tempat */
+    text-align: left;
+    padding: 16px;
+    gap: 16px;
+  }
+  .tree .org-photo {
+    margin-bottom: 0;
+    width: 60px;
+    height: 60px;
   }
 
-  /* Make decorative image smaller on mobile */
   .corner-decoration {
     width: 160px; 
   }
@@ -434,7 +498,6 @@ footer{
 <body>
 
 <!-- ================= DECORATIVE CORNER IMAGE ================= -->
-<!-- Jika ingin menambahkan gambar dekorasi di pojok kanan bawah, buka komentar di bawah ini -->
 <!-- <img src="dekorasi-sudut.png" alt="Dekorasi Sudut" class="corner-decoration"> -->
 
 <!-- ================= NAVBAR ================= -->
@@ -509,7 +572,7 @@ footer{
   </div>
 </section>
 
-<!-- ================= ORGANIZATION ================= -->
+<!-- ================= ORGANIZATION (TREE STRUCTURE) ================= -->
 <section id="structure" style="background:rgba(246, 241, 228, 0.6);">
   <div class="wrap">
     <div class="section-head reveal">
@@ -518,143 +581,113 @@ footer{
       <p>The people who keep Tvafyera running smoothly, kindly, and on time.</p>
     </div>
 
-    <div class="org">
+    <!-- BAGAN TREE DIMULAI DARI SINI -->
+    <div class="tree-wrap">
+      <ul class="tree">
+        <!-- LEVEL 1: TEACHER -->
+        <li>
+          <article class="org-card reveal">
+            <div class="org-photo">
+              <img src="https://placehold.co/100x100/C6DAC1/5F7F5C?text=Foto" alt="Foto Mrs. Ratna Kasih">
+            </div>
+            <div class="org-info">
+              <span class="org-role">Teacher</span>
+              <h3 class="org-name">Mrs. Ratna Kasih</h3>
+              <p class="org-note">Guides, teaches, and supports the whole class.</p>
+            </div>
+          </article>
 
-      <!-- 1. TEACHER -->
-      <article class="org-card reveal">
-        <span class="org-icon" aria-hidden="true">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-               stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M12 6.5C10.5 5 8 4.5 4 4.5v13c4 0 6.5.5 8 2 1.5-1.5 4-2 8-2v-13c-4 0-6.5.5-8 2Z"/>
-            <path d="M12 6.5v13"/>
-          </svg>
-        </span>
-        <div class="org-photo">
-          <img src="https://placehold.co/100x100/C6DAC1/5F7F5C?text=Foto" alt="Foto Mrs. Ratna Kasih">
-        </div>
-        <div class="org-info">
-          <span class="org-role">Teacher</span>
-          <h3 class="org-name">Mrs. Ratna Kasih</h3>
-          <p class="org-note">Guides, teaches, and supports the whole class.</p>
-        </div>
-      </article>
+          <ul>
+            <!-- LEVEL 2: CLASS LEADER -->
+            <li>
+              <article class="org-card reveal">
+                <div class="org-photo">
+                  <img src="https://placehold.co/100x100/C6DAC1/5F7F5C?text=Foto" alt="Foto Nafasha Irhabnabil">
+                </div>
+                <div class="org-info">
+                  <span class="org-role">Class Leader</span>
+                  <h3 class="org-name">Nafasha Irhabnabil</h3>
+                  <p class="org-note">Leads the class and represents our voice.</p>
+                </div>
+              </article>
 
-      <!-- 2. CLASS LEADER -->
-      <article class="org-card reveal">
-        <span class="org-icon" aria-hidden="true">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-               stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M12 3.6l2.5 5.1 5.6.8-4 3.9.9 5.6-5-2.6-5 2.6.9-5.6-4-3.9 5.6-.8L12 3.6Z"/>
-          </svg>
-        </span>
-        <div class="org-photo">
-          <img src="https://placehold.co/100x100/C6DAC1/5F7F5C?text=Foto" alt="Foto Nafasha Irhabnabil">
-        </div>
-        <div class="org-info">
-          <span class="org-role">Class Leader</span>
-          <h3 class="org-name">Nafasha Irhabnabil</h3>
-          <p class="org-note">Known as Nabil. Leads the class and represents our voice.</p>
-        </div>
-      </article>
+              <ul>
+                <!-- LEVEL 3: VICE LEADER -->
+                <li>
+                  <article class="org-card reveal">
+                    <div class="org-photo">
+                      <img src="https://placehold.co/100x100/C6DAC1/5F7F5C?text=Foto" alt="Foto M. Danial Khairul Ahzam">
+                    </div>
+                    <div class="org-info">
+                      <span class="org-role">Vice Leader</span>
+                      <h3 class="org-name">M. Danial Khairul Ahzam</h3>
+                      <p class="org-note">Supports the leader and keeps things moving.</p>
+                    </div>
+                  </article>
 
-      <!-- 3. VICE LEADER -->
-      <article class="org-card reveal">
-        <span class="org-icon" aria-hidden="true">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-               stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M6 21V4"/>
-            <path d="M6 5h11l-2.2 4L17 13H6"/>
-          </svg>
-        </span>
-        <div class="org-photo">
-          <img src="https://placehold.co/100x100/C6DAC1/5F7F5C?text=Foto" alt="Foto M. Danial Khairul Ahzam">
-        </div>
-        <div class="org-info">
-          <span class="org-role">Vice Leader</span>
-          <h3 class="org-name">M. Danial Khairul Ahzam</h3>
-          <p class="org-note">Supports the leader and keeps things moving.</p>
-        </div>
-      </article>
+                  <ul>
+                    <!-- LEVEL 4: SECRETARIES & TREASURERS -->
+                    <li>
+                      <article class="org-card reveal">
+                        <div class="org-photo">
+                          <img src="https://placehold.co/100x100/C6DAC1/5F7F5C?text=Foto" alt="Foto Muhammad Rafasya Alfarizqi">
+                        </div>
+                        <div class="org-info">
+                          <span class="org-role">Secretary 1</span>
+                          <h3 class="org-name">Muhammad Rafasya Alfarizqi</h3>
+                          <p class="org-note">Records notes and announcements.</p>
+                        </div>
+                      </article>
+                    </li>
+                    
+                    <li>
+                      <article class="org-card reveal">
+                        <div class="org-photo">
+                          <img src="https://placehold.co/100x100/C6DAC1/5F7F5C?text=Foto" alt="Foto Qonita Sholihah">
+                        </div>
+                        <div class="org-info">
+                          <span class="org-role">Secretary 2</span>
+                          <h3 class="org-name">Qonita Sholihah</h3>
+                          <p class="org-note">Assists in recording class administration.</p>
+                        </div>
+                      </article>
+                    </li>
 
-      <!-- 4. SECRETARY 1 -->
-      <article class="org-card reveal">
-        <span class="org-icon" aria-hidden="true">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-               stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M4.5 19.5l4.2-1 9.6-9.6a2.1 2.1 0 0 0-3-3L5.7 15.5l-1.2 4Z"/>
-            <path d="M14.5 6.5l3 3"/>
-          </svg>
-        </span>
-        <div class="org-photo">
-          <img src="https://placehold.co/100x100/C6DAC1/5F7F5C?text=Foto" alt="Foto Muhammad Rafasya Alfarizqi">
-        </div>
-        <div class="org-info">
-          <span class="org-role">Secretary 1</span>
-          <h3 class="org-name">Muhammad Rafasya Alfarizqi</h3>
-          <p class="org-note">Records notes, announcements, and class records.</p>
-        </div>
-      </article>
+                    <li>
+                      <article class="org-card reveal">
+                        <div class="org-photo">
+                          <img src="https://placehold.co/100x100/C6DAC1/5F7F5C?text=Foto" alt="Foto Annisa Qotrunnada">
+                        </div>
+                        <div class="org-info">
+                          <span class="org-role">Treasurer 1</span>
+                          <h3 class="org-name">Annisa Qotrunnada</h3>
+                          <p class="org-note">Manages class funds with care.</p>
+                        </div>
+                      </article>
+                    </li>
 
-      <!-- 5. SECRETARY 2 -->
-      <article class="org-card reveal">
-        <span class="org-icon" aria-hidden="true">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-               stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M4.5 19.5l4.2-1 9.6-9.6a2.1 2.1 0 0 0-3-3L5.7 15.5l-1.2 4Z"/>
-            <path d="M14.5 6.5l3 3"/>
-          </svg>
-        </span>
-        <div class="org-photo">
-          <img src="https://placehold.co/100x100/C6DAC1/5F7F5C?text=Foto" alt="Foto Qonita Sholihah">
-        </div>
-        <div class="org-info">
-          <span class="org-role">Secretary 2</span>
-          <h3 class="org-name">Qonita Sholihah</h3>
-          <p class="org-note">Assists in recording notes and class administration.</p>
-        </div>
-      </article>
-
-      <!-- 6. TREASURER 1 -->
-      <article class="org-card reveal">
-        <span class="org-icon" aria-hidden="true">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-               stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="12" cy="12" r="8"/>
-            <path d="M12 7.5v9"/>
-            <path d="M14.6 9.6c-.5-.7-1.4-1.1-2.6-1.1-1.5 0-2.5.7-2.5 1.8 0 2.6 5.2 1.3 5.2 3.9 0 1.1-1.1 1.9-2.7 1.9-1.3 0-2.3-.5-2.8-1.3"/>
-          </svg>
-        </span>
-        <div class="org-photo">
-          <img src="https://placehold.co/100x100/C6DAC1/5F7F5C?text=Foto" alt="Foto Annisa Qotrunnada">
-        </div>
-        <div class="org-info">
-          <span class="org-role">Treasurer 1</span>
-          <h3 class="org-name">Annisa Qotrunnada</h3>
-          <p class="org-note">Manages class funds with care and honesty.</p>
-        </div>
-      </article>
-
-      <!-- 7. TREASURER 2 -->
-      <article class="org-card reveal">
-        <span class="org-icon" aria-hidden="true">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-               stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="12" cy="12" r="8"/>
-            <path d="M12 7.5v9"/>
-            <path d="M14.6 9.6c-.5-.7-1.4-1.1-2.6-1.1-1.5 0-2.5.7-2.5 1.8 0 2.6 5.2 1.3 5.2 3.9 0 1.1-1.1 1.9-2.7 1.9-1.3 0-2.3-.5-2.8-1.3"/>
-          </svg>
-        </span>
-        <div class="org-photo">
-          <img src="https://placehold.co/100x100/C6DAC1/5F7F5C?text=Foto" alt="Foto Laila Anggraini Hasyim">
-        </div>
-        <div class="org-info">
-          <span class="org-role">Treasurer 2</span>
-          <h3 class="org-name">Laila Anggraini Hasyim</h3>
-          <p class="org-note">Assists in managing class finances and records.</p>
-        </div>
-      </article>
-
+                    <li>
+                      <article class="org-card reveal">
+                        <div class="org-photo">
+                          <img src="https://placehold.co/100x100/C6DAC1/5F7F5C?text=Foto" alt="Foto Laila Anggraini Hasyim">
+                        </div>
+                        <div class="org-info">
+                          <span class="org-role">Treasurer 2</span>
+                          <h3 class="org-name">Laila Anggraini Hasyim</h3>
+                          <p class="org-note">Assists in managing class finances.</p>
+                        </div>
+                      </article>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
     </div>
+    <!-- BAGAN TREE SELESAI -->
+
   </div>
 </section>
 
