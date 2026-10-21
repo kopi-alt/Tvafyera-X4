@@ -475,47 +475,37 @@ section{ padding:96px 24px; scroll-margin-top:80px; }
 }
 
 /* ============================================================
-   MEMORIES OF CLASS SECTION
+   MEMORIES OF CLASS SECTION (9:16 GALLERY)
    ============================================================ */
 .memories-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 24px;
-  padding: 20px 0;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 20px;
+  margin-top: 20px;
 }
 
-.memory-slot {
-  aspect-ratio: 16 / 9; /* Landscape frame */
-  background-color: var(--sage-soft);
-  border-radius: 20px;
+.memory-card {
+  aspect-ratio: 9 / 16; /* Frame 9:16 (Portrait) */
+  background: var(--sage-soft);
+  border-radius: 16px;
   overflow: hidden;
-  border: 3px dashed var(--sage);
   box-shadow: var(--shadow);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  color: var(--sage-dark);
-  font-weight: 700;
-  font-size: 1.1rem;
-  transition: transform .3s ease, border-color .3s ease;
+  transition: transform .3s ease, box-shadow .3s ease;
+  border: 3px solid var(--paper);
   position: relative;
 }
 
-.memory-slot:hover {
-  transform: scale(1.02);
-  border-color: var(--sage-dark);
+.memory-card:hover {
+  transform: scale(1.03) translateY(-2px);
+  box-shadow: 0 22px 44px -20px rgba(63,58,51,.6);
+  z-index: 10;
 }
 
-/* Jika nanti diisi gambar, gambar akan memenuhi slot */
-.memory-slot img {
+.memory-card img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  position: absolute;
-  inset: 0;
 }
-
 
 /* ---------- FOOTER ---------- */
 footer{
@@ -605,14 +595,14 @@ footer{
     font-size: 0.85rem;
   }
 
-  .corner-decoration {
-    width: 160px; 
+  /* Grid memories menjadi 2 kolom di HP */
+  .memories-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
   }
 
-  /* Memories grid menjadi 1 kolom di HP */
-  .memories-grid {
-    grid-template-columns: 1fr;
-    gap: 16px;
+  .corner-decoration {
+    width: 160px; 
   }
 }
 
@@ -712,7 +702,7 @@ footer{
         <li>
           <article class="org-card reveal">
             <div class="org-photo">
-              <img src="background.jpg" alt="Foto Mrs. Ratna Kasih">
+              <img src="foto.jpeg" alt="Foto Mrs. Ratna Kasih">
             </div>
             <div class="org-info">
               <span class="org-role">Teacher</span>
@@ -726,7 +716,7 @@ footer{
             <li>
               <article class="org-card reveal">
                 <div class="org-photo">
-                  <img src="background.jpg" alt="Foto Nafasha Irhabnabil">
+                  <img src="foto.jpeg" alt="Foto Nafasha Irhabnabil">
                 </div>
                 <div class="org-info">
                   <span class="org-role">Class Leader</span>
@@ -740,7 +730,7 @@ footer{
                 <li>
                   <article class="org-card reveal">
                     <div class="org-photo">
-                      <img src="background.jpg" alt="Foto Muhammad Danial Khoirul Ahzam">
+                      <img src="foto.jpeg" alt="Foto Muhammad Danial Khoirul Ahzam">
                     </div>
                     <div class="org-info">
                       <span class="org-role">Vice Leader</span>
@@ -754,7 +744,7 @@ footer{
                     <li>
                       <article class="org-card reveal">
                         <div class="org-photo">
-                          <img src="background.jpg" alt="Foto Muhammad Rafasya Alfarizqi">
+                          <img src="foto.jpeg" alt="Foto Muhammad Rafasya Alfarizqi">
                         </div>
                         <div class="org-info">
                           <span class="org-role">Secretary 1</span>
@@ -766,7 +756,7 @@ footer{
                     <li>
                       <article class="org-card reveal">
                         <div class="org-photo">
-                          <img src="background.jpg" alt="Foto Qonita Sholihah">
+                          <img src="foto.jpeg" alt="Foto Qonita Sholihah">
                         </div>
                         <div class="org-info">
                           <span class="org-role">Secretary 2</span>
@@ -778,7 +768,7 @@ footer{
                     <li>
                       <article class="org-card reveal">
                         <div class="org-photo">
-                          <img src="background.jpg" alt="Foto Annisa Qotrunnada">
+                          <img src="foto.jpeg" alt="Foto Annisa Qotrunnada">
                         </div>
                         <div class="org-info">
                           <span class="org-role">Treasurer 1</span>
@@ -790,7 +780,7 @@ footer{
                     <li>
                       <article class="org-card reveal">
                         <div class="org-photo">
-                          <img src="background.jpg" alt="Foto Laila Anggraini Hasim">
+                          <img src="foto.jpeg" alt="Foto Laila Anggraini Hasim">
                         </div>
                         <div class="org-info">
                           <span class="org-role">Treasurer 2</span>
@@ -825,13 +815,13 @@ footer{
       <div class="member-grid">
         <div class="person-card">
           <div class="person-photo">
-            <img src="background.jpg" alt="Foto Zilmi Gaiza Ribki">
+            <img src="foto.jpeg" alt="Foto Zilmi Gaiza Ribki">
           </div>
           <span class="person-name">Zilmi Gaiza Ribki</span>
         </div>
         <div class="person-card">
           <div class="person-photo">
-            <img src="background.jpg" alt="Foto Ahmad Ali Hanafi">
+            <img src="foto.jpeg" alt="Foto Ahmad Ali Hanafi">
           </div>
           <span class="person-name">Ahmad Ali Hanafi</span>
         </div>
@@ -844,13 +834,13 @@ footer{
       <div class="member-grid">
         <div class="person-card">
           <div class="person-photo">
-            <img src="background.jpg" alt="Foto Harza Pratama Putra">
+            <img src="foto.jpeg" alt="Foto Harza Pratama Putra">
           </div>
           <span class="person-name">Harza Pratama Putra</span>
         </div>
         <div class="person-card">
           <div class="person-photo">
-            <img src="background.jpg" alt="Foto Aulia Arianti Ramdani">
+            <img src="foto.jpeg" alt="Foto Aulia Arianti Ramdani">
           </div>
           <span class="person-name">Aulia Arianti Ramdani</span>
         </div>
@@ -863,13 +853,13 @@ footer{
       <div class="member-grid">
         <div class="person-card">
           <div class="person-photo">
-            <img src="background.jpg" alt="Foto Nasywa Althofunnisa">
+            <img src="foto.jpeg" alt="Foto Nasywa Althofunnisa">
           </div>
           <span class="person-name">Nasywa Althofunnisa</span>
         </div>
         <div class="person-card">
           <div class="person-photo">
-            <img src="background.jpg" alt="Foto Baiq Neysa Sholawati">
+            <img src="foto.jpeg" alt="Foto Baiq Neysa Sholawati">
           </div>
           <span class="person-name">Baiq Neysa Sholawati</span>
         </div>
@@ -882,19 +872,19 @@ footer{
       <div class="member-grid">
         <div class="person-card">
           <div class="person-photo">
-            <img src="background.jpg" alt="Foto Ayinul Muhimmatul Mufthiyar">
+            <img src="foto.jpeg" alt="Foto Ayinul Muhimmatul Mufthiyar">
           </div>
           <span class="person-name">Ayinul Muhimmatul Mufthiyar</span>
         </div>
         <div class="person-card">
           <div class="person-photo">
-            <img src="background.jpg" alt="Foto Fajra Naila Arkarnandika">
+            <img src="foto.jpeg" alt="Foto Fajra Naila Arkarnandika">
           </div>
           <span class="person-name">Fajra Naila Arkarnandika</span>
         </div>
         <div class="person-card">
           <div class="person-photo">
-            <img src="background.jpg" alt="Foto Fakhira Salsabila">
+            <img src="foto.jpeg" alt="Foto Fakhira Salsabila">
           </div>
           <span class="person-name">Fakhira Salsabila</span>
         </div>
@@ -915,55 +905,55 @@ footer{
     <div class="member-grid reveal">
       <div class="person-card">
         <div class="person-photo">
-          <img src="background.jpg" alt="Foto Ahmad Bangkit Ardika">
+          <img src="foto.jpeg" alt="Foto Ahmad Bangkit Ardika">
         </div>
         <span class="person-name">Ahmad Bangkit Ardika</span>
       </div>
       <div class="person-card">
         <div class="person-photo">
-          <img src="background.jpg" alt="Foto Aulia Zaskia Putri">
+          <img src="foto.jpeg" alt="Foto Aulia Zaskia Putri">
         </div>
         <span class="person-name">Aulia Zaskia Putri</span>
       </div>
       <div class="person-card">
         <div class="person-photo">
-          <img src="background.jpg" alt="Foto Baiq Alfiatussolihah">
+          <img src="foto.jpeg" alt="Foto Baiq Alfiatussolihah">
         </div>
         <span class="person-name">Baiq Alfiatussolihah</span>
       </div>
       <div class="person-card">
         <div class="person-photo">
-          <img src="background.jpg" alt="Foto M. Zian Hafikara">
+          <img src="foto.jpeg" alt="Foto M. Zian Hafikara">
         </div>
         <span class="person-name">M. Zian Hafikara</span>
       </div>
       <div class="person-card">
         <div class="person-photo">
-          <img src="background.jpg" alt="Foto Muhammad Rayan Fauzi">
+          <img src="foto.jpeg" alt="Foto Muhammad Rayan Fauzi">
         </div>
         <span class="person-name">Muhammad Rayan Fauzi</span>
       </div>
       <div class="person-card">
         <div class="person-photo">
-          <img src="background.jpg" alt="Foto Muhammad Syafiq Rizqullah">
+          <img src="foto.jpeg" alt="Foto Muhammad Syafiq Rizqullah">
         </div>
         <span class="person-name">Muhammad Syafiq Rizqullah</span>
       </div>
       <div class="person-card">
         <div class="person-photo">
-          <img src="background.jpg" alt="Foto Nur Isma'iyatul">
+          <img src="foto.jpeg" alt="Foto Nur Isma'iyatul">
         </div>
         <span class="person-name">Nur Isma'iyatul</span>
       </div>
       <div class="person-card">
         <div class="person-photo">
-          <img src="background.jpg" alt="Foto Rosyidatul Aisyah">
+          <img src="foto.jpeg" alt="Foto Rosyidatul Aisyah">
         </div>
         <span class="person-name">Rosyidatul Aisyah</span>
       </div>
       <div class="person-card">
         <div class="person-photo">
-          <img src="background.jpg" alt="Foto Salisa Wafika Royyani">
+          <img src="foto.jpeg" alt="Foto Salisa Wafika Royyani">
         </div>
         <span class="person-name">Salisa Wafika Royyani</span>
       </div>
@@ -975,52 +965,52 @@ footer{
 <section id="memories">
   <div class="wrap">
     <div class="section-head reveal">
-      <span class="eyebrow">Gallery</span>
+      <span class="eyebrow">Our Gallery</span>
       <h2>Memories of Class</h2>
-      <p>A collection of moments, laughter, and stories we've shared together.</p>
+      <p>Capturing the moments, laughter, and stories we've shared together.</p>
     </div>
 
+    <!-- 10 Slot Foto 9:16 -->
     <div class="memories-grid reveal">
       <!-- Slot 1 -->
-      <div class="memory-slot">
-        <!-- Nanti ganti dengan <img src="foto1.jpg" alt="Memory 1"> -->
-        <span>Slot Foto 1</span>
+      <div class="memory-card">
+        <img src="foto.jpeg" alt="Memory 1">
       </div>
       <!-- Slot 2 -->
-      <div class="memory-slot">
-        <span>Slot Foto 2</span>
+      <div class="memory-card">
+        <img src="foto.jpeg" alt="Memory 2">
       </div>
       <!-- Slot 3 -->
-      <div class="memory-slot">
-        <span>Slot Foto 3</span>
+      <div class="memory-card">
+        <img src="foto.jpeg" alt="Memory 3">
       </div>
       <!-- Slot 4 -->
-      <div class="memory-slot">
-        <span>Slot Foto 4</span>
+      <div class="memory-card">
+        <img src="foto.jpeg" alt="Memory 4">
       </div>
       <!-- Slot 5 -->
-      <div class="memory-slot">
-        <span>Slot Foto 5</span>
+      <div class="memory-card">
+        <img src="foto.jpeg" alt="Memory 5">
       </div>
       <!-- Slot 6 -->
-      <div class="memory-slot">
-        <span>Slot Foto 6</span>
+      <div class="memory-card">
+        <img src="foto.jpeg" alt="Memory 6">
       </div>
       <!-- Slot 7 -->
-      <div class="memory-slot">
-        <span>Slot Foto 7</span>
+      <div class="memory-card">
+        <img src="foto.jpeg" alt="Memory 7">
       </div>
       <!-- Slot 8 -->
-      <div class="memory-slot">
-        <span>Slot Foto 8</span>
+      <div class="memory-card">
+        <img src="foto.jpeg" alt="Memory 8">
       </div>
       <!-- Slot 9 -->
-      <div class="memory-slot">
-        <span>Slot Foto 9</span>
+      <div class="memory-card">
+        <img src="foto.jpeg" alt="Memory 9">
       </div>
       <!-- Slot 10 -->
-      <div class="memory-slot">
-        <span>Slot Foto 10</span>
+      <div class="memory-card">
+        <img src="foto.jpeg" alt="Memory 10">
       </div>
     </div>
   </div>
